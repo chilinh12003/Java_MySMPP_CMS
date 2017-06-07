@@ -1,0 +1,64 @@
+
+<div class="grid-data">
+	<table border="0">
+		<tbody>
+			<tr class="header">${gridHeader}
+			</tr>
+			${gridData}
+			<tr>
+				<td colspan="100%" class="footer"><div class="paging">
+						<select name="selPageSize" onchange="selPageSizeChange();">
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+							<option value="500">500</option>
+
+						</select> <input type="hidden" name="hidPageIndex" value="${pageIndex}">
+						${gridPaging}
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="hide">
+		<input type="hidden" id="hidListCheckAll" />
+	</div>
+</div>
+
+<script type="text/javascript">
+	hid_ListCheckAll = document.getElementById("hidListCheckAll");
+
+	ReCheck_CheckboxOnGrid();
+
+	function EditData() {
+		if (BeforeEditData()) {
+			document.location = 'AdProduct_Edit.aspx?ID=' + hid_ListCheckAll.value;
+
+			return true;
+		}
+		return false;
+	}
+
+	function Active() {
+		if (GetAllCheck('Xin hãy chọn ít nhất một mục để kích hoạt')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function UnActive() {
+		if (GetAllCheck('Xin hãy chọn ít nhất một mục để hủy kích hoạt')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function selPageSizeChange() {
+		var theForm = document.forms[0];
+		if (!theForm)
+			return;
+		theForm.submit();
+	}
+</script>
